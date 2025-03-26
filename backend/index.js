@@ -16,47 +16,54 @@ const dinocontractAddress = '0x98ba2bbf253E507E4656b018faD50ceFa74Eb5BC';
 const nftMarketcontract = "0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319";
 
 function getWallet() {
-    const wallet = new Wallet(privateKey, provider);
-    return wallet;
+    return new Wallet(privateKey, provider);
 }
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("Server running")
-})
+    res.send("Server running");
+});
 
 app.post('/airdropDino', async (req, res) => {
-    const { address, amount } = req.body;
+    try {
+        const { address, amount } = req.body;
 
-    console.log("amount", typeof (amount));
-    console.log("addrss", address);
+        const wallet = getWallet();
+        const contract = new Contract(dinocontractAddress, dinoAbi, wallet);
+        console.log(contract);
 
-    const wallet = getWallet();
-    const contract = new Contract(dinocontractAddress, dinoAbi, wallet);
-    console.log(contract);
-    const tx = await contract.mint(address, ethers.parseUnits(amount.toString(), 18));
-    await tx.wait();
+        const tx = await contract.mint(address, ethers.parseUnits(amount.toString(), 18));
+        await tx.wait();
 
-    res.json({ message: "Token received", txHash: tx.hash });
+        res.json({ message: "Token received", txHash: tx.hash });
 
-})
+    } catch (error) {
+        console.error("AirdropDino Error:", error);
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+});
 
-app.use('/airdropNFT', async (req, res) => {
-    const { address, id } = req.body;
+app.post('/airdropNFT', async (req, res) => {
+    try {
+        const { address, id } = req.body;
 
-    const wallet = getWallet();
-    const contract = new Contract(nftMarketcontract, nftAbi, wallet);
-    const txn = await contract.freeNFT(address, id);
-    txn.wait();
+        const wallet = getWallet();
+        const contract = new Contract(nftMarketcontract, nftAbi, wallet);
 
-    res.json({
-        message: "NFT gifted", txHash: txn.hash
-    })
-})
+        const txn = await contract.freeNFT(address, id);
+        await txn.wait();
+
+        res.json({ message: "NFT gifted", txHash: txn.hash });
+
+    } catch (error) {
+        console.error("AirdropNFT Error:", error);
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
