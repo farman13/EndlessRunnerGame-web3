@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAccount } from "wagmi";
 import { useCharacter } from "../Context/CharacterContext";
 import axios from 'axios';
-import { useTokenBalance } from "../hooks/useTokenbalance";
+import { useTokenBalance } from "../hooks/useTokenBalance";
 
 const DinoGame = () => {
     const canvasRef = useRef(null);
