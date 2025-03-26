@@ -35,10 +35,11 @@ app.post('/airdropDino', async (req, res) => {
         const contract = new Contract(dinocontractAddress, dinoAbi, wallet);
         console.log(contract);
 
-        const tx = await contract.mint(address, ethers.parseUnits(amount.toString(), 18, { gasLimit: 500000 }));
-        await tx.wait();
+        const txn = await contract.mint(address, ethers.parseUnits(amount.toString(), 18, { gasLimit: 500000 }));
 
-        res.json({ message: "Token received", txHash: tx.hash });
+        res.json({ message: "Token received", txHash: txn.hash });
+        const receipt = await txn.wait();
+        console.log("Transaction confirmed:", receipt);
 
     } catch (error) {
         console.error("AirdropDino Error:", error);
@@ -54,9 +55,11 @@ app.post('/airdropNFT', async (req, res) => {
         const contract = new Contract(nftMarketcontract, nftAbi, wallet);
 
         const txn = await contract.freeNFT(address, id, { gasLimit: 500000 });
-        await txn.wait();
 
         res.json({ message: "NFT gifted", txHash: txn.hash });
+        const receipt = await txn.wait();
+        console.log("Transaction confirmed:", receipt);
+
 
     } catch (error) {
         console.error("AirdropNFT Error:", error);
