@@ -41,4 +41,4 @@ contract nft is ERC1155, Ownable {
 
 
 //"https://ipfs.io/ipfs/bafybeiez542kslu5pknkcbrrbcsqtznre2sjndlxl6o56hzpza7nsmpvv4/"
-//0x4f79ed748b7E7Ea904B42528b58DfEAc170C2081
+//0x70ED1e6e34B4b3D7176E563B67b9A64D628597C6

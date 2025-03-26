@@ -51,8 +51,6 @@ contract NftMarketplace is Ownable{
          }
 }
 
-// adding withdraw()
-// add getokens mapping to get all the tokens owned by a user
-// make this contract owner of nft contract 
-//0xB218d330B7b36D2aDDbd1AADf4C2d90Bfd2d83d9 - new
+
+// make sure this contract owner of nft contract 
 //0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319
