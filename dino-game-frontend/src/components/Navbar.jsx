@@ -6,10 +6,10 @@ const Navbar = () => {
         <nav
             style={{
                 backgroundColor: "#2d3748",
-                padding: "15px 0",
+                padding: "8px 0",
                 position: "relative",
                 zIndex: 10,
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
             }}
         >
             <div

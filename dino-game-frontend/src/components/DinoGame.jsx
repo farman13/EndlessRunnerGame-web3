@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAccount } from "wagmi";
 import { useCharacter } from "../Context/CharacterContext";
 import axios from 'axios';
+import { useTokenBalance } from "../hooks/useTokenbalance";
 
 const DinoGame = () => {
     const canvasRef = useRef(null);
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [gameStarted, setGameStarted] = useState(false); // New state for game start
+    const [showPopup, setShowPopup] = useState(false);
     const isJumping = useRef(false);
     const dinoY = useRef(250);
     const velocity = useRef(0);
@@ -16,6 +18,7 @@ const DinoGame = () => {
 
     const { isConnected, address } = useAccount();
     const { character } = useCharacter();
+    const { balance, isLoading, isError, refetchBalance } = useTokenBalance();
 
     useEffect(() => {
 
@@ -95,6 +98,7 @@ const DinoGame = () => {
             console.log("Final Score (After Update):", score);
             handleAirdrop(score);
         }
+
     }, [gameOver, score]);
 
     const handleJump = () => {
@@ -121,11 +125,14 @@ const DinoGame = () => {
         isJumping.current = false;
         dinoY.current = 0;
         velocity.current = 0;
+
+        refetchBalance();
     };
 
     const startGame = () => {
         setGameStarted(true); // Start the game
         restartGame(); // Reset the game state
+        refetchBalance();
     };
 
     const handleAirdrop = async (score) => {
@@ -137,8 +144,9 @@ const DinoGame = () => {
 
             const amount = score / 100;
             const dinoResponse = await airdropDinoToken(amount);
+            console.log("Dino Airdrop Hash:", dinoResponse.txHash);
 
-            if (score > 200) {
+            if (score > 1000) {
                 await airdropNFT();
             }
         }
@@ -161,18 +169,58 @@ const DinoGame = () => {
         const response = await axios.post("http://localhost:3000/airdropNFT", {
             address
         });
-        console.log(response.data);
+        console.log("NFT", response.data);
+
+        setShowPopup(true);
+
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 3000);
     }
 
     return (
-        <div style={{ textAlign: "center" }}>
-            <h1>Dino Game</h1>
+        <div style={{ textAlign: "center", position: "relative" }}>
+            <h2>Dino Game</h2>
+            <div style={{
+                position: "absolute",
+                top: "5px",
+                left: "10px",
+                backgroundColor: "#000",
+                color: "#fff",
+                padding: "2px 8px",
+                borderRadius: "10px",
+                fontSize: "14px",
+                fontWeight: "bold"
+            }}>
+                <p>Balance: {isLoading ? "Loading..." : isError ? "Error" : `${balance} Tokens`}</p>
+            </div>
             <canvas ref={canvasRef} width={800} height={300} style={{ border: "1px solid black" }}></canvas>
             <p>Score: {score}</p>
             {isConnected && !gameStarted && <button onClick={startGame}>Start Game</button>} {/* Start Game button */}
             {gameOver && <button onClick={restartGame}>Restart</button>}
             <p>Press Spacebar to Jump</p>
+
+            {showPopup && (
+                <div style={{
+                    position: "fixed",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    backgroundColor: "white",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
+                    textAlign: "center",
+                    zIndex: 1000,
+                    background: "black",
+                    color: "white"
+                }}>
+                    <h3>Congratulations!</h3>
+                    <p>You reached 1000 score and received a free NFT! 🎉</p>
+                </div>
+            )}
         </div>
+
     );
 };
 

@@ -16,6 +16,7 @@ const nftTotalList = [
 const YourCharacters = () => {
     const tokenIds = nftTotalList.map(nft => nft.id);
     const [userNfts, setUserNfts] = useState([]);
+    const [selectedNFT, setSelectedNFT] = useState(null);
 
     const { address } = useAccount();
     const { setCharacter } = useCharacter();
@@ -43,8 +44,9 @@ const YourCharacters = () => {
     if (isLoading) return <><Navbar /><p>Loading...</p></>;
     if (isError) return <><Navbar /><p>Error fetching balances</p></>;
 
-    async function selectCharacter(image) {
-        setCharacter(image);
+    async function selectCharacter(nft) {
+        setCharacter(nft.image);
+        setSelectedNFT(nft.id);
     }
 
     return (
@@ -72,11 +74,11 @@ const YourCharacters = () => {
                             src={nft.image}
                             alt={nft.name}
                             style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }}
-                            onClick={() => selectCharacter(nft.image)}
+                            onClick={() => selectCharacter(nft)}
                         />
                         <p style={{ fontWeight: "bold", fontSize: "16px" }}>{nft.name}</p>
                         <button
-                            onClick={() => selectCharacter(nft.image)}
+                            onClick={() => selectCharacter(nft)}
                             style={{
                                 padding: "8px 12px",
                                 backgroundColor: "#007bff",
@@ -86,7 +88,7 @@ const YourCharacters = () => {
                                 cursor: "pointer"
                             }}
                         >
-                            Select
+                            {selectedNFT === nft.id ? "Selected" : "Select"}
                         </button>
                     </div>
                 ))}
