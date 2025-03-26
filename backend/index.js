@@ -2,10 +2,13 @@ const express = require('express');
 const { ethers, JsonRpcProvider, Wallet, Contract } = require('ethers');
 const cors = require('cors');
 require('dotenv').config();
-const { dinoAbi } = require('../ABIs/Abi.json');
-const { nftAbi } = require('../ABIs/nftAbi.json');
+
+const { dinoAbi } = require('./ABIs/Abi.json');
+const { nftAbi } = require('./ABIs/nftAbi.json');
 
 const privateKey = process.env.PRIVATE_KEY;
+console.log(process.env.PRIVATE_KEY);
+
 const provider = new JsonRpcProvider(process.env.RPC_URL);
 console.log(provider);
 
