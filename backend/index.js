@@ -35,7 +35,7 @@ app.post('/airdropDino', async (req, res) => {
         const contract = new Contract(dinocontractAddress, dinoAbi, wallet);
         console.log(contract);
 
-        const tx = await contract.mint(address, ethers.parseUnits(amount.toString(), 18));
+        const tx = await contract.mint(address, ethers.parseUnits(amount.toString(), 18, { gasLimit: 500000 }));
         await tx.wait();
 
         res.json({ message: "Token received", txHash: tx.hash });
@@ -53,7 +53,7 @@ app.post('/airdropNFT', async (req, res) => {
         const wallet = getWallet();
         const contract = new Contract(nftMarketcontract, nftAbi, wallet);
 
-        const txn = await contract.freeNFT(address, id);
+        const txn = await contract.freeNFT(address, id, { gasLimit: 500000 });
         await txn.wait();
 
         res.json({ message: "NFT gifted", txHash: txn.hash });
