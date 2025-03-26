@@ -4,7 +4,7 @@ const CharacterContext = createContext();
 
 
 export const CharacterProvider = ({ children }) => {
-    const [character, setCharacter] = useState("./squritle.png");
+    const [character, setCharacter] = useState("./dino.avif");
 
     return (
         <CharacterContext.Provider value={{ character, setCharacter }}>

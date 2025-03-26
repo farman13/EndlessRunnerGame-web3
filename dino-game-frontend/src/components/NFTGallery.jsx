@@ -3,13 +3,15 @@ import { parseUnits } from "viem";
 import { dinoAbi } from "../assets/DinoABI.json";
 import { nftAbi } from "../assets/NftMarketplaceABI.json"
 import Navbar from "./Navbar";
+import { useState } from "react";
 
-const NFTMarketcontractAddress = "0xB218d330B7b36D2aDDbd1AADf4C2d90Bfd2d83d9"; // Your contract
+const NFTMarketcontractAddress = "0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319"; // Your contract
 const DinoContractAddress = "0x98ba2bbf253E507E4656b018faD50ceFa74Eb5BC";
 
 const nftList = [
     { id: 1, name: "Pikachu", price: "10", image: "/pokemon.jpg" },
     { id: 2, name: "Charizard", price: "20", image: "/Blastoise.jpeg" },
+    { id: 500, name: "Takaratomy", price: "30", image: "/Takaratomy.jpg" }
 ];
 
 export default function NFTGallery() {
@@ -18,10 +20,11 @@ export default function NFTGallery() {
 
     const publicClient = usePublicClient();
     const { address } = useAccount();
-    //need to update
-    const handleMint = async (id, price) => {
+    const [buy, setBuy] = useState(null);
 
-        const amount = parseUnits(price, 18);
+    const handleMint = async (nft) => {
+
+        const amount = parseUnits(nft.price, 18);
         console.log(amount);
         console.log(address);
 
@@ -39,9 +42,10 @@ export default function NFTGallery() {
             abi: nftAbi,
             address: NFTMarketcontractAddress,
             functionName: "buyNFT",
-            args: [id]
+            args: [nft.id]
         });
-        console.log("end")
+
+        setBuy(nft.id);
     };
 
     return (
@@ -69,12 +73,12 @@ export default function NFTGallery() {
                             src={nft.image}
                             alt={nft.name}
                             style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }}
-                            onClick={() => handleMint(nft.id, nft.price)}
+                            onClick={() => handleMint(nft)}
                         />
                         <p style={{ fontWeight: "bold", fontSize: "16px" }}>{nft.name}</p>
                         <p style={{ fontSize: "14px", color: "gray" }}>Price: {nft.price} dinos </p>
                         <button
-                            onClick={() => handleMint(nft.id, nft.price)}
+                            onClick={() => handleMint(nft)}
                             style={{
                                 padding: "8px 12px",
                                 backgroundColor: "#007bff",
@@ -84,7 +88,7 @@ export default function NFTGallery() {
                                 cursor: "pointer"
                             }}
                         >
-                            Buy
+                            {buy == nft.id ? "purchased" : "Buy"}
                         </button>
                     </div>
                 ))}

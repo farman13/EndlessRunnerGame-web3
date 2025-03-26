@@ -11,9 +11,13 @@ interface INFT is IERC1155{
 }
 contract NftMarketplace is Ownable{
     
+    event NftMarketplace__buyNFT(address indexed buyer, uint256 indexed tokenId);
+    event NftMarketplace__freeNFT(address indexed account, uint256 indexed tokenId);
+
+
     INFT nftContract;
     IERC20 dinoToken;
-
+   
     constructor(address _nftContract,address _dinoToken ) Ownable(msg.sender){
         nftContract = INFT(_nftContract);
         dinoToken = IERC20(_dinoToken);
@@ -23,7 +27,6 @@ contract NftMarketplace is Ownable{
     }
 
     mapping(uint256 token => uint256 price) public tokenPrice;
-    mapping(address user => uint256[] tokenIds) public tokensHoldings;
     
     function setTokenPrice( uint tokenId,uint price) public onlyOwner {
         tokenPrice[tokenId] = price;
@@ -34,17 +37,14 @@ contract NftMarketplace is Ownable{
         require(dinoToken.allowance(msg.sender,address(this)) >= tokenPrice[tokenId]);
         dinoToken.transferFrom(msg.sender ,address(this), tokenPrice[tokenId] );
         nftContract.mint(msg.sender, tokenId, 1);
-        tokensHoldings[msg.sender].push(tokenId);
+        emit NftMarketplace__buyNFT(msg.sender,tokenId);
     }
 
     function freeNFT(address account, uint256 tokenId) external onlyOwner {
         nftContract.mint(account,tokenId,1);
-        tokensHoldings[msg.sender].push(tokenId);
+        emit NftMarketplace__freeNFT(account,tokenId);
     }
 
-    function getUserTokensIds(address user) public view returns(uint256[] memory){
-        return tokensHoldings[user];
-    }
 
     function withdraw() public onlyOwner{
         dinoToken.transfer(msg.sender, address(this).balance);
@@ -55,3 +55,4 @@ contract NftMarketplace is Ownable{
 // add getokens mapping to get all the tokens owned by a user
 // make this contract owner of nft contract 
 //0xB218d330B7b36D2aDDbd1AADf4C2d90Bfd2d83d9 - new
+//0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319

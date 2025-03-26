@@ -52,7 +52,7 @@ const DinoGame = () => {
             dinoImg.onload = () => console.log("Dino image loaded successfully!");
 
             // Draw Dino
-            ctx.drawImage(dinoImg, 50, dinoY.current, 50, 50);
+            ctx.drawImage(dinoImg, 50, dinoY.current, 65, 50);
             // Gravity Effect
             dinoY.current += velocity.current;
             velocity.current += gravity;
@@ -141,13 +141,23 @@ const DinoGame = () => {
             return;
         }
         else {
-
             const amount = score / 100;
-            const dinoResponse = await airdropDinoToken(amount);
-            console.log("Dino Airdrop Hash:", dinoResponse.txHash);
-
-            if (score > 1000) {
-                await airdropNFT();
+            if (score > 1500) {
+                alert(`You got ${amount} dino tokens and You got a NFT ! Sending it your way now!🚀🎉`)
+                const dinoResponse = await airdropDinoToken(amount);
+                console.log("Dino Airdrop Hash:", dinoResponse.txHash);
+                await airdropNFT(1500);
+            }
+            else if (score > 500) {
+                alert(`You got ${amount} dino tokens and You got a NFT ! Sending it your way now!🚀🎉`)
+                const dinoResponse = await airdropDinoToken(amount);
+                console.log("Dino Airdrop Hash:", dinoResponse.txHash);
+                await airdropNFT(500);
+            }
+            else {
+                alert(`You got ${amount} dino tokens 🚀🎉`)
+                const dinoResponse = await airdropDinoToken(amount);
+                console.log("Dino Airdrop Hash:", dinoResponse.txHash);
             }
         }
 
@@ -165,9 +175,10 @@ const DinoGame = () => {
         return response.data;
     }
 
-    const airdropNFT = async () => {
+    const airdropNFT = async (id) => {
         const response = await axios.post("http://localhost:3000/airdropNFT", {
-            address
+            address,
+            id
         });
         console.log("NFT", response.data);
 
@@ -181,19 +192,22 @@ const DinoGame = () => {
     return (
         <div style={{ textAlign: "center", position: "relative" }}>
             <h2>Dino Game</h2>
-            <div style={{
-                position: "absolute",
-                top: "5px",
-                left: "10px",
-                backgroundColor: "#000",
-                color: "#fff",
-                padding: "2px 8px",
-                borderRadius: "10px",
-                fontSize: "14px",
-                fontWeight: "bold"
-            }}>
-                <p>Balance: {isLoading ? "Loading..." : isError ? "Error" : `${balance} Tokens`}</p>
-            </div>
+            {address &&
+                <div style={{
+                    position: "absolute",
+                    top: "5px",
+                    left: "10px",
+                    backgroundColor: "#000",
+                    color: "#fff",
+                    padding: "2px 8px",
+                    borderRadius: "10px",
+                    fontSize: "14px",
+                    fontWeight: "bold"
+                }}>
+
+                    <p>Balance: {isLoading ? "Loading..." : isError ? "Error" : `${balance} Tokens`}</p>
+                </div>
+            }
             <canvas ref={canvasRef} width={800} height={300} style={{ border: "1px solid black" }}></canvas>
             <p>Score: {score}</p>
             {isConnected && !gameStarted && <button onClick={startGame}>Start Game</button>} {/* Start Game button */}

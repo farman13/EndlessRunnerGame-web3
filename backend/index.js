@@ -10,7 +10,7 @@ const provider = new JsonRpcProvider(process.env.RPC_URL);
 console.log(provider);
 
 const dinocontractAddress = '0x98ba2bbf253E507E4656b018faD50ceFa74Eb5BC';
-const nftMarketcontract = "0xB218d330B7b36D2aDDbd1AADf4C2d90Bfd2d83d9";
+const nftMarketcontract = "0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319";
 
 function getWallet() {
     const wallet = new Wallet(privateKey, provider);
@@ -39,11 +39,11 @@ app.post('/airdropDino', async (req, res) => {
 })
 
 app.use('/airdropNFT', async (req, res) => {
-    const { address } = req.body;
+    const { address, id } = req.body;
 
     const wallet = getWallet();
     const contract = new Contract(nftMarketcontract, nftAbi, wallet);
-    const txn = await contract.freeNFT(address, 500);
+    const txn = await contract.freeNFT(address, id);
     txn.wait();
 
     res.json({

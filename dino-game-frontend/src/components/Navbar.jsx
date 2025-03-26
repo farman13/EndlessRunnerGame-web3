@@ -30,7 +30,7 @@ const Navbar = () => {
                     />
                 </div>
                 <div style={{ color: "white", fontSize: "24px", fontWeight: "bold" }}>
-                    Dino Game
+                    DINO GAME
                 </div>
                 <div style={{ display: "flex", gap: "20px" }}>
                     <Link

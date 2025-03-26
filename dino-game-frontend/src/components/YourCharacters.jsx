@@ -5,12 +5,13 @@ import { Abi } from "../assets/NFt.json";
 import { useEffect, useRef, useState } from "react";
 import { useCharacter } from "../Context/CharacterContext";
 
-const NFTcontractAddress = "0xd84eeA86323C288550cAB2F04b3268C11881c558";
+const NFTcontractAddress = "0x70ED1e6e34B4b3D7176E563B67b9A64D628597C6";
 
 const nftTotalList = [
     { id: 1, name: "Pikachu", price: "10", image: "/pokemon.jpg" },
     { id: 2, name: "Blastoise", price: "20", image: "/Blastoise.jpeg" },
-    { id: 500, name: "Takaratomy", price: "30", image: "/Takaratomy.jpg" }
+    { id: 500, name: "Takaratomy", price: "30", image: "/Takaratomy.jpg" },
+    { id: 1500, name: "Charizard", price: "40", image: "/Charizard.jpg" }
 ];
 
 const YourCharacters = () => {
