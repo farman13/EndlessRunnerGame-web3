@@ -167,7 +167,7 @@ const DinoGame = () => {
 
         console.log("airdrop token :", amount)
 
-        const response = await axios.post("http://localhost:3000/airdropDino", {
+        const response = await axios.post("https://endless-runner-game-web3.vercel.app/airdropDino", {
             address,
             amount
         });
@@ -176,7 +176,7 @@ const DinoGame = () => {
     }
 
     const airdropNFT = async (id) => {
-        const response = await axios.post("http://localhost:3000/airdropNFT", {
+        const response = await axios.post("https://endless-runner-game-web3.vercel.app/airdropNFT", {
             address,
             id
         });
