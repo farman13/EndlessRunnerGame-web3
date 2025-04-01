@@ -1,8 +1,7 @@
 import { useAccount, useReadContract } from "wagmi";
 import Navbar from "./Navbar";
-import { nftAbi } from "../assets/NftMarketplaceABI.json";
 import { Abi } from "../assets/NFt.json";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCharacter } from "../Context/CharacterContext";
 
 const NFTcontractAddress = "0x70ED1e6e34B4b3D7176E563B67b9A64D628597C6";
