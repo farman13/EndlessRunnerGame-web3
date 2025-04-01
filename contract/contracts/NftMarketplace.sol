@@ -9,6 +9,7 @@ interface INFT is IERC1155{
      function mint(address account, uint256 id,uint256 amount) external ;
 
 }
+ 
 contract NftMarketplace is Ownable{
     
     event NftMarketplace__buyNFT(address indexed buyer, uint256 indexed tokenId);
@@ -52,5 +53,5 @@ contract NftMarketplace is Ownable{
 }
 
 
-// make sure this contract owner of nft contract 
+// make sure this contract is owner of nft contract 
 //0xEDD3CFAD07dB2F501fFf6a10D02D5a9a974a7319
