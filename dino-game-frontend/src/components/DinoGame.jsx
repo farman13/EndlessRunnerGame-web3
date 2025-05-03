@@ -210,9 +210,11 @@ const DinoGame = () => {
             }
             <canvas ref={canvasRef} width={800} height={300} style={{ border: "1px solid black" }}></canvas>
             <p>Score: {score}</p>
-            {isConnected && !gameStarted && <button onClick={startGame}>Start Game</button>} {/* Start Game button */}
+            {isConnected && !gameStarted ? <div><button onClick={startGame}>Start Game</button>
+                <p>Press Spacebar to Jump</p></div>
+                : <h2>Please Connect your wallet to start the game !</h2>
+            } {/* Start Game button */}
             {gameOver && <button onClick={restartGame}>Restart</button>}
-            <p>Press Spacebar to Jump</p>
 
             {showPopup && (
                 <div style={{

@@ -49,6 +49,21 @@ const Navbar = () => {
                         Home
                     </Link>
                     <Link
+                        to="/GamePage"
+                        style={{
+                            color: "white",
+                            backgroundColor: "#4299e1",
+                            padding: "8px 15px",
+                            borderRadius: "8px",
+                            textDecoration: "none",
+                            transition: "transform 0.2s, background-color 0.3s",
+                        }}
+                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
+                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4299e1")}
+                    >
+                        Game
+                    </Link>
+                    <Link
                         to="/buy"
                         style={{
                             color: "white",
