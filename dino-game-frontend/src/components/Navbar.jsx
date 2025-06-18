@@ -1,11 +1,12 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link } from "react-router-dom";
+import dinoImg from "../../public/dino-black.jpg"
 
 const Navbar = () => {
     return (
         <nav
             style={{
-                backgroundColor: "#2d3748",
+                backgroundColor: "rgb(14, 13, 13)",
                 padding: "8px 0",
                 position: "relative",
                 zIndex: 10,
@@ -22,29 +23,27 @@ const Navbar = () => {
                     padding: "0 20px",
                 }}
             >
-                <div>
+                <div style={{ marginLeft: "20px" }}>
                     <img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABu0lEQVR4nO2XQU/CMBTHywXFBCNcDErk4AlBTZSDgQ/rwVvjWLu1b10ZIUayk98J00WSSXCAdAjz/ZIly/pv+976b9NHCIIgCIJsgeThoAgPKUwiaZZ+PLC2vQtI/ttEZFH2iCxKIsi+IXk4AK6ffCfsCvFeW6ePoqpu9KafLWtsGwNZHNDzRldZA4hX0crb794vYkgaKKVlcKApXNU3H4UQtZ/+QtLuqr7vR5emH7GE1RjAgaYRBXzcWTaI74fdxAYONG0lkEsMlNLy3K9LJ/nyo82VyC0GmXEu7+rMljZiwEQsInFFUqC1LCLRWinQWhaRaK0UaK19thZjrCqEbmumLwiZlbIGgRc4FUPdNlfr2WxWyppjlVYuxjDUbbZGDCSO48rkeXIMAEdzIedBJ124CBE+zt8pjStGayZxnKBhrtzfCh2me0KMW6amoJRurJUbxKCUqk/ZtEoAJsn9f+nDdC8I3hrAopuVld0fasFc+V3XPfN9dZ9ky3QPeHQHQ7g2tXN62T3v48SUoAEPOoEXPeyLVrqjW86jc7LKy+ZP2PD9LrQkvUfy8n1eWoV7hB/gHkEQBEEQks0npiwDPS4USB8AAAAASUVORK5CYII="
+                        src={dinoImg}
                         alt="bridge"
                         style={{ height: "40px" }}
                     />
                 </div>
-                <div style={{ color: "white", fontSize: "24px", fontWeight: "bold" }}>
+                <div style={{ color: "white", fontSize: "24px", fontWeight: "bold", marginRight: '20px' }}>
                     DINO GAME
                 </div>
-                <div style={{ display: "flex", gap: "20px" }}>
+                <div style={{ display: "flex", gap: "20px", marginRight: '30px' }}>
                     <Link
                         to="/"
                         style={{
                             color: "white",
-                            backgroundColor: "#4299e1",
                             padding: "8px 15px",
                             borderRadius: "8px",
                             textDecoration: "none",
-                            transition: "transform 0.2s, background-color 0.3s",
+                            fontFamily: "sans-serif",
+                            fontWeight: "500",
                         }}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4299e1")}
                     >
                         Home
                     </Link>
@@ -52,14 +51,12 @@ const Navbar = () => {
                         to="/GamePage"
                         style={{
                             color: "white",
-                            backgroundColor: "#4299e1",
                             padding: "8px 15px",
                             borderRadius: "8px",
                             textDecoration: "none",
-                            transition: "transform 0.2s, background-color 0.3s",
+                            fontFamily: "sans-serif",
+                            fontWeight: "500",
                         }}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4299e1")}
                     >
                         Game
                     </Link>
@@ -67,14 +64,12 @@ const Navbar = () => {
                         to="/buy"
                         style={{
                             color: "white",
-                            backgroundColor: "#4299e1",
                             padding: "8px 15px",
                             borderRadius: "8px",
                             textDecoration: "none",
-                            transition: "transform 0.2s, background-color 0.3s",
+                            fontFamily: "sans-serif",
+                            fontWeight: "500",
                         }}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4299e1")}
                     >
                         Buy Characters
                     </Link>
@@ -82,14 +77,12 @@ const Navbar = () => {
                         to="/yourCharacters"
                         style={{
                             color: "white",
-                            backgroundColor: "#4299e1",
                             padding: "8px 15px",
                             borderRadius: "8px",
                             textDecoration: "none",
-                            transition: "transform 0.2s, background-color 0.3s",
+                            fontFamily: "sans-serif",
+                            fontWeight: "500",
                         }}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4299e1")}
                     >
                         Your Characters
                     </Link>
