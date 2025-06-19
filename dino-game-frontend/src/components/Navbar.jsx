@@ -23,15 +23,15 @@ const Navbar = () => {
                     padding: "0 20px",
                 }}
             >
-                <div style={{ marginLeft: "20px" }}>
-                    <img
-                        src={dinoImg}
-                        alt="bridge"
-                        style={{ height: "40px" }}
-                    />
-                </div>
-                <div style={{ color: "white", fontSize: "24px", fontWeight: "bold", marginRight: '20px' }}>
-                    DINO GAME
+                <div style={{ color: "white", fontSize: "24px", fontWeight: "bold", marginRight: '40px', marginLeft: '10px', display: 'flex' }}>
+                    <div>
+                        <img
+                            src={dinoImg}
+                            alt="bridge"
+                            style={{ height: "40px" }}
+                        />
+                    </div>
+                    <div style={{ marginLeft: '8px', paddingTop: '8px' }}>DINO GAME</div>
                 </div>
                 <div style={{ display: "flex", gap: "20px", marginRight: '30px' }}>
                     <Link

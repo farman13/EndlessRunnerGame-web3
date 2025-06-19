@@ -1,125 +1,120 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import React from 'react';
+import Navbar from './Navbar';
+import './Home.css';
+import { Footer } from './Footer';
 
 const Home = () => {
-    const navigate = useNavigate();
-
     return (
         <>
             <Navbar />
-            <div
-                style={{
-                    minHeight: "100vh",
-                    backgroundColor: "#0d1b2a",
-                    color: "#f1f1f1",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "2rem",
-                }}
-            >
-                <div style={{ maxWidth: "800px", width: "100%" }}>
-                    <h1 style={{ fontSize: "2.8rem", color: "#fca311", textAlign: "center", marginBottom: "1rem" }}>
-                        🦖 Endless Runner – Web3 Gaming with Real Rewards!
-                    </h1>
-                    <p style={{ fontSize: "1.2rem", color: "#e0e1dd", textAlign: "center", marginBottom: "2rem" }}>
-                        Play to earn <strong>Dino Tokens</strong> and unlock powerful NFT characters in a fully decentralized, player-owned ecosystem.
-                    </p>
-
-                    {/* Bonus Rewards */}
-                    <div
-                        style={{
-                            backgroundColor: "#1b263b",
-                            padding: "1rem 1.5rem",
-                            borderRadius: "12px",
-                            marginBottom: "1.5rem",
-                        }}
-                    >
-                        <h2 style={{ color: "#fca311" }}>🔥 Bonus Rewards</h2>
-                        <ul style={{ paddingLeft: "1.2rem", color: "#e0e1dd" }}>
-                            <li>🎯 Score <strong>500+</strong> → Free NFT character</li>
-                            <li>🏆 Score <strong>1500+</strong> → Exclusive, more attractive NFT</li>
-                        </ul>
-                    </div>
-
-                    {/* Why Choose Us */}
-                    <div
-                        style={{
-                            backgroundColor: "#1e293b",
-                            padding: "1rem 1.5rem",
-                            borderRadius: "12px",
-                            marginBottom: "1.5rem",
-                        }}
-                    >
-                        <h2 style={{ color: "#4cc9f0" }}>💡 Why It’s Better?</h2>
-                        <ul style={{ paddingLeft: "1.2rem", color: "#f1f1f1" }}>
-                            <li>✅ <strong>Full Ownership</strong> – NFTs are in your MetaMask</li>
-                            <li>✅ <strong>Trade & Share</strong> – Sell, lend or gift your characters</li>
-                            <li>✅ <strong>No Central Control</strong> – You fully own your assets</li>
-                        </ul>
-                    </div>
-
-                    {/* Features */}
-                    <div
-                        style={{
-                            backgroundColor: "#14213d",
-                            padding: "1rem 1.5rem",
-                            borderRadius: "12px",
-                            marginBottom: "1.5rem",
-                        }}
-                    >
-                        <h2 style={{ color: "#ffbe0b" }}>🎮 Game Features</h2>
-                        <ul style={{ paddingLeft: "1.2rem", color: "#ffffff" }}>
-                            <li>🏃‍♂️ Endless running action</li>
-                            <li>🦖 Earn Dino Tokens while playing</li>
-                            <li>🛒 Spend tokens on new NFT characters</li>
-                        </ul>
-                    </div>
-
-                    {/* Contract Info */}
-                    <div
-                        style={{
-                            backgroundColor: "#1a1a2e",
-                            padding: "1rem 1.5rem",
-                            borderRadius: "12px",
-                            marginBottom: "2rem",
-                            border: "1px solid #2c2c54",
-                        }}
-                    >
-                        <h3 style={{ color: "#00f5d4" }}>📦 Token & NFT Info</h3>
-                        <p><strong>Dino Token:</strong> <code style={{ color: "#adf7b6" }}>0x98ba2bbf253E507E4656b018faD50ceFa74Eb5BC</code></p>
-                        <p><strong>NFT Contract:</strong> <code style={{ color: "#adf7b6" }}>0x70ED1e6e34B4b3D7176E563B67b9A64D628597C6</code></p>
-                        <p><strong>Character IDs:</strong></p>
-                        <ul style={{ paddingLeft: "1.2rem" }}>
-                            <li>Pokemon: <code style={{ color: "#ffcad4" }}>1</code></li>
-                            <li>Takaratomy: <code style={{ color: "#ffcad4" }}>500</code></li>
-                            <li>Charizard: <code style={{ color: "#ffcad4" }}>1500</code></li>
-                        </ul>
-                    </div>
-
-                    {/* CTA Button */}
-                    <div style={{ textAlign: "center" }}>
-                        <button
-                            onClick={() => navigate("/GamePage")}
-                            style={{
-                                padding: "0.8rem 2rem",
-                                fontSize: "1.1rem",
-                                backgroundColor: "#00b4d8",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "8px",
-                                cursor: "pointer",
-                                transition: "background-color 0.3s",
-                            }}
-                            onMouseEnter={(e) => (e.target.style.backgroundColor = "#0077b6")}
-                            onMouseLeave={(e) => (e.target.style.backgroundColor = "#00b4d8")}
-                        >
-                            🚀 Play Now
+            <div className="home-min-h-screen home-bg-gray-900 home-text-gray-100 home-font-sans">
+                <section className="home-hero-section">
+                    <div className="home-hero-content">
+                        <h1 className="home-hero-title">
+                            Endless Runner – Web3 Gaming with Real Rewards!
+                        </h1>
+                        <button className="home-play-button" onClick={() => alert('Launching Game!')}>
+                            Play Now
                         </button>
                     </div>
-                </div>
+                </section>
+
+                <main className="home-h-container home-my-10 home-px-4">
+                    {/* Game Functionality and Features Section */}
+                    <section className="home-section">
+                        <h2 className="home-section-title">Game Features & Rewards</h2>
+                        <div className="home-grid-container">
+                            <div className="home-feature-card">
+                                <span className="home-card-icon">🚀</span>
+                                <h3 className="home-card-title">Play to Earn</h3>
+                                <p className="home-card-description">
+                                    Earn Dino Tokens as you play and achieve high scores.
+                                    These tokens are your gateway to the Web3 gaming ecosystem.
+                                </p>
+                            </div>
+                            <div className="home-feature-card">
+                                <span className="home-card-icon">🔓</span>
+                                <h3 className="home-card-title">Unlock NFTs</h3>
+                                <p className="home-card-description">
+                                    Use your earned Dino Tokens or achieve high scores to unlock
+                                    powerful and unique NFT characters.
+                                </p>
+                            </div>
+                            <div className="home-feature-card">
+                                <span className="home-card-icon"> 🔗 </span>
+                                <h3 className="home-card-title">Decentralized Ecosystem</h3>
+                                <p className="home-card-description">
+                                    Experience true ownership in a fully decentralized environment where
+                                    your assets are truly yours.
+                                </p>
+                            </div>
+                            <div className="home-feature-card">
+                                <span className="home-card-icon">🌟</span>
+                                <h3 className="home-card-title">Bonus Reward: 500+ Score</h3>
+                                <p className="home-card-description">
+                                    Score 500+ in a single run to get a free NFT character!
+                                </p>
+                            </div>
+                            <div className="home-feature-card">
+                                <span className="home-card-icon">✨</span>
+                                <h3 className="home-card-title">Exclusive Reward: 1500+ Score</h3>
+                                <p className="home-card-description">
+                                    Achieve 1500+ score for an exclusive, more attractive character!
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Why It's Better Section */}
+                    <section className="home-section home-bg-gray-800 home-rounded-xl home-shadow-lg">
+                        <h2 className="home-section-title">Why It’s Better Than Other Web3 Games</h2>
+                        <div className="home-text-left home-max-w-3xl home-mx-auto">
+                            <div className="home-list-item">
+                                <span className="home-list-icon">✅</span>
+                                <p className="home-list-text">
+                                    <strong className="home-text-white">Full Ownership</strong> – Your characters (NFTs) are stored in your MetaMask wallet, not controlled by game developers.
+                                </p>
+                            </div>
+                            <div className="home-list-item">
+                                <span className="home-list-icon">✅</span>
+                                <p className="home-list-text">
+                                    <strong className="home-text-white">Trade & Share</strong> – You can sell, trade, or lend your NFTs to friends, letting them use your characters.
+                                </p>
+                            </div>
+                            <div className="home-list-item">
+                                <span className="home-list-icon">✅</span>
+                                <p className="home-list-text">
+                                    <strong className="home-text-white">No Central Control</strong> – Unlike most Web3 games where assets are limited to in-game use, here, you truly own what you buy.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Important Game Info Section */}
+                    <section className="home-section">
+                        <h2 className="home-section-title">Important Game Info</h2>
+                        <div className="home-info-card home-max-w-2xl home-mx-auto">
+                            <div className="home-info-item">
+                                <p className="home-info-label">Dino Token Address:</p>
+                                <p className="home-info-value home-address">0x98ba2bbf253E507E4656b018faD50ceFa74Eb5BC</p>
+                            </div>
+                            <div className="home-info-item">
+                                <p className="home-info-label">NFT Contract Address:</p>
+                                <p className="home-info-value home-address">0x70ED1e6e34B4b3D7176E563B67b9A64D628597C9</p>
+                            </div>
+                            <div className="home-info-item">
+                                <p className="home-info-label">Character IDs:</p>
+                                <ul className="home-info-value">
+                                    <li><strong className="home-text-gray-200">Pokemon:</strong> <span className="home-character-id">1</span></li>
+                                    <li className="home-mt-2"><strong className="home-text-gray-200">Takaratomy:</strong> <span className="home-character-id">500</span></li>
+                                    <li className="home-mt-2"><strong className="home-text-gray-200">Charizard:</strong> <span className="home-character-id">1500</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </main>
             </div>
+            <Footer />
         </>
     );
 };

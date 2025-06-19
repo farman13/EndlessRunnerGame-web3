@@ -1,4 +1,3 @@
-import React from "react";
 import NFTGallery from "./components/NFTGallery";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
