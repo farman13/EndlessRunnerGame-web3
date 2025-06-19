@@ -2,8 +2,11 @@ import React from 'react';
 import Navbar from './Navbar';
 import './Home.css';
 import { Footer } from './Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+    const navigate = useNavigate();
     return (
         <>
             <Navbar />
@@ -13,7 +16,7 @@ const Home = () => {
                         <h1 className="home-hero-title">
                             Endless Runner – Web3 Gaming with Real Rewards!
                         </h1>
-                        <button className="home-play-button" onClick={() => alert('Launching Game!')}>
+                        <button className="home-play-button" onClick={() => navigate('/GamePage')}>
                             Play Now
                         </button>
                     </div>
