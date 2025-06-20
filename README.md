@@ -3,6 +3,8 @@
 ## 🚀 Overview
 Endless Runner is a Web3 game where players earn **Dino Tokens** 🦖 by playing. These tokens can be used to **buy new characters (NFTs)**, which are stored in the player's **MetaMask wallet**.
 
+![BrainDump Screenshot](./web3game.png)
+
 ### 🎁 Rewards System
 - **Score 500+** → Get a **free NFT character** 🎉
 - **Score 1500+** → Get an **exclusive, more attractive character** 🔥
